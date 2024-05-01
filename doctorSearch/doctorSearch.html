@@ -1,0 +1,21 @@
+<!-- doctorSearch.html -->
+<template>
+    <lightning-card title="Wyszukiwanie Lekarzy">
+        <div class="slds-p-around_medium">
+            <lightning-input label="Specjalizacja" value={specialization} onchange={handleSpecializationChange}></lightning-input>
+            <lightning-input label="Lokalizacja" value={location} onchange={handleLocationChange}></lightning-input>
+            <lightning-button label="Szukaj" onclick={searchDoctors}></lightning-button>
+        </div>
+        <template if:true={searchResults}>
+            <ul>
+                <template for:each={searchResults} for:item="doctor">
+                    <li key={doctor.id}>
+                        <p>{doctor.name}</p>
+                        <p>{doctor.specialization}</p>
+                        <p>{doctor.location}</p>
+                    </li>
+                </template>
+            </ul>
+        </template>
+    </lightning-card>
+</template>

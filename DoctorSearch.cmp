@@ -1,0 +1,24 @@
+<aura:component controller="DoctorSearchController">
+    <aura:attribute name="specialization" type="String" default=""/>
+    <aura:attribute name="location" type="String" default=""/>
+    <aura:attribute name="searchResults" type="List" />
+
+    <lightning:card title="Wyszukiwanie Lekarzy">
+        <div class="slds-p-around_medium">
+            <lightning:input label="Specjalizacja" value="{!v.specialization}" onchange="{!c.handleSpecializationChange}"/>
+            <lightning:input label="Lokalizacja" value="{!v.location}" onchange="{!c.handleLocationChange}"/>
+            <lightning:button label="Szukaj" onclick="{!c.searchDoctors}"/>
+        </div>
+        <aura:if isTrue="{!not(empty(v.searchResults))}">
+            <ul>
+                <aura:iteration items="{!v.searchResults}" var="doctor">
+                    <li>
+                        <p>{!doctor.Name}</p>
+                        <p>{!doctor.Specialization__c}</p>
+                        <p>{!doctor.Location__c}</p>
+                    </li>
+                </aura:iteration>
+            </ul>
+        </aura:if>
+    </lightning:card>
+</aura:component>
